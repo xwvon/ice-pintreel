@@ -1,0 +1,54 @@
+version: '3.8'
+
+services:
+  app:
+    # Use your custom image instead of the base image
+    image: my-app:latest
+    ports:
+      - "8880:8080"
+    environment:
+      - APP_ENV=${APP_ENV:-production}
+      - APP_DEBUG=${APP_DEBUG:-false}
+      - DB_CONNECTION=mongodb
+      - DB_DSN=${DB_DSN}
+      - REDIS_HOST=redis
+      - REDIS_PASSWORD=${REDIS_PASSWORD}
+      - REDIS_PORT=6379
+    depends_on:
+      - redis
+      - mongodb
+    volumes:
+      - .env/:/var/www/html/.env:ro
+    networks:
+      - app-network
+    restart: unless-stopped
+
+  redis:
+    image: redis:7-alpine
+    command: redis-server --requirepass ${REDIS_PASSWORD}
+    volumes:
+      - redis-data:/data
+    networks:
+      - app-network
+    restart: unless-stopped
+
+  mongodb:
+    image: mongo:6
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${MONGODB_USERNAME:-root}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGODB_PASSWORD:-fY3xsNzwiuVefgHs}
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb-data:/data/db
+    networks:
+      - app-network
+    restart: unless-stopped
+
+volumes:
+  redis-data:
+  mongodb-data:
+
+networks:
+  app-network:
+    driver: bridge
