@@ -2,9 +2,8 @@ version: '3.8'
 
 services:
   app:
-    build:
-      context: .
-      dockerfile: Dockerfile
+    # Use your custom image instead of the base image
+    image: my-app:latest
     ports:
       - "8880:8080"
     environment:
@@ -18,8 +17,6 @@ services:
     depends_on:
       - redis
       - mongodb
-    volumes:
-      - ./:/var/www/html
     networks:
       - app-network
     restart: unless-stopped
