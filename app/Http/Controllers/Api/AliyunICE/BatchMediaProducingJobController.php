@@ -41,7 +41,7 @@ class BatchMediaProducingJobController extends ApiBaseController
         $output_config = $request->output_config;
         unset($output_config['name']);
         $model->output_config = array_merge([
-            'media_url'       => "https://" . env('ALIYUN_OSS_BUCKET') . ".oss-cn-shanghai.aliyuncs.com/{$username}/{$filename}_{index}.mp4",
+            'media_url'       => "https://" . env('ALIYUN_OSS_BUCKET') . "." . env('ALIYUN_OSS_ENDPOINT') . "/{$username}/{$filename}_{index}.mp4",
         ], $output_config);
         $model->save();
         return $this->success([

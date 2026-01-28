@@ -57,7 +57,7 @@ class AuthServiceProvider extends ServiceProvider
                                      'headers'  => $headers,
                                  ]);
 
-            $res = $client->get('/api/v1/auth/token/check');
+            $res = $client->post('/api/v1/auth/token/check');
             if ($res->getStatusCode() !== 200) {
                 return null;
             }

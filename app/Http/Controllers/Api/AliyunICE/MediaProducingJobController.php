@@ -47,7 +47,7 @@ class MediaProducingJobController extends ApiBaseController
         $filename = $request->output_media_config['name'];
         $username = $request->user()->username;
         $model->output_media_config = [
-            'media_url'       => "https://" . env('ALIYUN_OSS_BUCKET') . ".oss-cn-shanghai.aliyuncs.com/{$username}/{$filename}.mp4",
+            'media_url'       => "https://" . env('ALIYUN_OSS_BUCKET') . "." . env('ALIYUN_OSS_ENDPOINT') . "/{$username}/{$filename}.mp4",
         ];
         $model->save();
         return $this->submit($model);

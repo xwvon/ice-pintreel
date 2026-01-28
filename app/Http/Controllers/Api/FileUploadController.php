@@ -54,10 +54,6 @@ class FileUploadController extends Controller
         $accessKeySecret = $config["access_key_secret"];
         $endpoint        = $request->endpoint ?? $config["oss"]["default"]["endpoint"];
         $bucket          = $request->bucket ?? $config["oss"]["default"]["bucket"];
-        // $getID3 = new \getID3;
-        // $video_file = $getID3->analyze($file->getRealPath());
-        // $duration_seconds = $video_file['playtime_seconds'];
-        // return $this->error(0, $duration_seconds);
         try {
             $ossClient = new OssClient($accessKeyId, $accessKeySecret, $endpoint);
             $data = $ossClient->uploadFile($bucket, $filename, $file->getRealPath());
@@ -93,11 +89,10 @@ class FileUploadController extends Controller
     public function index(Request $request): JsonResponse
     {
         $data = MediaInfo::whereUserId(auth()->user()->getAuthIdentifier())->latest()->select(['media_id', 'media_basic_info.input_url'])->paginate($request->perpage ?? 10);
-        // dd($data);
         $medias = $data->map(function ($media) {
             
             if ($media->media_id) {
-                $bucket_domain = env('ALIYUN_OSS_BUCKET') . '.oss-cn-shanghai.aliyuncs.com/';
+                $bucket_domain = env('ALIYUN_OSS_BUCKET') . '.' .  env('ALIYUN_REGION_ID') . '.aliyuncs.com/';
                 $media->url = $this->getUrl(Str::after($media->media_basic_info['input_url'], $bucket_domain), $media->media_id);
             }
             unset($media->media_basic_info);
