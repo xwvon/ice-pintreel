@@ -6,6 +6,8 @@ use App\Http\Controllers\ApiBaseController;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Auth;
+use Pusher\Pusher;
+use Illuminate\Http\Request;
 
 class AuthController extends ApiBaseController
 {
@@ -37,6 +39,13 @@ class AuthController extends ApiBaseController
         }
 
         return $this->respondWithToken($token);
+    }
+
+    public function auth(Request $request)
+    {
+        $pusher = new Pusher(env('PUSHER_APP_ID'), env('PUSHER_APP_SECRET'), env('PUSHER_APP_ID'));
+        $auth = $pusher->socketAuth($request->input('channel_name'), $request->input('socket_id'));
+        return $auth;
     }
 
     /**

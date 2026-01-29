@@ -35,8 +35,8 @@ services:
   mongodb:
     image: mongo:6
     environment:
-      MONGO_INITDB_ROOT_USERNAME: ${MONGODB_USERNAME:-root}
-      MONGO_INITDB_ROOT_PASSWORD: ${MONGODB_PASSWORD:-fY3xsNzwiuVefgHs}
+      MONGO_INITDB_ROOT_USERNAME: ${DB_USERNAME:-root}
+      MONGO_INITDB_ROOT_PASSWORD: ${DB_PASSWORD:-fY3xsNzwiuVefgHs}
     ports:
       - "27017:27017"
     volumes:

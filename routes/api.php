@@ -36,6 +36,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::post('refresh', [AuthController::class, 'refresh']);
         Route::post('status', [AuthController::class, 'status']);
         Route::post('logout', [AuthController::class, 'logout']);
+        Route::post('pusher', [AuthController::class, 'auth']);
     });
     Route::group(['prefix' => 'file-upload'], function () {
         Route::post('simple', [FileUploadController::class, 'simple']);

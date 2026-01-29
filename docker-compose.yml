@@ -2,8 +2,9 @@ version: '3.8'
 
 services:
   app:
-    # Use your custom image instead of the base image
-    image: my-app:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
     ports:
       - "8880:8080"
     environment:
@@ -17,6 +18,8 @@ services:
     depends_on:
       - redis
       - mongodb
+    volumes:
+      - ./:/var/www/html
     networks:
       - app-network
     restart: unless-stopped
@@ -33,8 +36,8 @@ services:
   mongodb:
     image: mongo:6
     environment:
-      MONGO_INITDB_ROOT_USERNAME: ${MONGODB_USERNAME:-root}
-      MONGO_INITDB_ROOT_PASSWORD: ${MONGODB_PASSWORD:-fY3xsNzwiuVefgHs}
+      MONGO_INITDB_ROOT_USERNAME: ${DB_USERNAME:-root}
+      MONGO_INITDB_ROOT_PASSWORD: ${DB_PASSWORD:-fY3xsNzwiuVefgHs}
     ports:
       - "27017:27017"
     volumes:
