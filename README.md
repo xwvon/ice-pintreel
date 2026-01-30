@@ -1,4 +1,4 @@
-# Ice Pintreel Project
+# Ice Project
 
 A Laravel-based media management application with Aliyun OSS integration, MongoDB database support, and Redis caching.
 
@@ -36,50 +36,6 @@ This project is designed to handle media uploads, processing, and management wit
 - Docker Compose
 
 ## Installation
-
-### Local Setup
-
-1. Clone the repository:
-```bash
-git clone <repository-url>
-cd ice.pintreel.com
-```
-
-2. Install dependencies:
-```bash
-composer install
-npm install
-```
-
-3. Configure environment variables:
-```bash
-cp .env.example .env
-php artisan key:generate
-```
-
-4. Update `.env` with your credentials:
-```env
-# Aliyun Configuration
-ALIYUN_VIDEO_ACCESS_KEY_ID=your_access_key_id
-ALIYUN_VIDEO_ACCESS_KEY_SECRET=your_access_key_secret
-ALIYUN_VIDEO_BUCKET=your_bucket_name
-ALIYUN_STS_ACCESS_KEY_ID=your_sts_key_id
-ALIYUN_STS_ACCESS_KEY_SECRET=your_sts_secret
-ALIYUN_ROLE_ARN=acs:ram::your_account_id:role/your_role_name
-ALIYUN_ROLE_SESSION_NAME=your_session_name
-
-# Database
-DB_DSN=mongodb://root:password@127.0.0.1:27017
-
-# Redis
-REDIS_PASSWORD=your_redis_password
-```
-
-5. Generate necessary keys and tables:
-```bash
-php artisan migrate
-php artisan queue:work
-```
 
 ## Docker Deployment
 
