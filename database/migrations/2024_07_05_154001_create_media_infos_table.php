@@ -146,7 +146,7 @@ class CreateMediaInfosTable extends Migration
             $table->string('input_url');
             $table->string('media_type')->nullable();
             $table->string('media_id')->unique();
-            $table->string('reference_id', 64)->unique();
+            $table->string('reference_id', 64)->nullable();
             $table->string('client_token', 32)->nullable();
             $table->string('business_type')->nullable();
             $table->string('title')->nullable();

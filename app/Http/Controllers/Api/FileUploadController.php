@@ -35,10 +35,6 @@ class FileUploadController extends Controller
 
         // Get uploaded file
         $file = $request->file('file');
-        
-        // if (auth()->user()->username == "pintreel_wg") {
-        //     dd(auth()->user()->username);
-        // }
 
         // Generate unique file name
         // $filename = uniqid() . '.' . $file->getClientOriginalExtension();
