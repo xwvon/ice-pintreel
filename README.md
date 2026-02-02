@@ -95,7 +95,7 @@ docker build -t my-app:latest .
 
 3. Build and start containers:
 ```bash
-docker-compose up -f compose.prod.yml -d
+docker-compose -f compose.prod.yml up -d
 ```
 
 4. Run migrations:
