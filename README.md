@@ -103,7 +103,13 @@ docker-compose -f compose.prod.yml up -d
 docker-compose exec app php artisan migrate
 ```
 
-5. Config nginx reverse proxy
+### Or deploy with script
+```bash
+chmod +x deploy.sh
+./deploy.sh
+```
+
+### Config nginx reverse proxy
 ```
 #PROXY-START/
 
