@@ -26,10 +26,14 @@ services:
   queue:
     image: my-app:latest
     command: ["php", "/var/www/html/artisan", "queue:work", "--tries=3"]
-    healthcheck:
-      # This is our native healthcheck script for the queue
-      test: ["CMD", "healthcheck-queue"]
-      start_period: 10s
+    volumes:
+    - .env:/var/www/html/.env:ro
+    depends_on:
+      - redis
+      - mongodb
+    networks:
+      - app-network
+    restart: unless-stopped
 
   redis:
     image: redis:7-alpine
