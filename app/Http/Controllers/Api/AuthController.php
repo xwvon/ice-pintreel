@@ -43,7 +43,7 @@ class AuthController extends ApiBaseController
 
     public function auth(Request $request)
     {
-        $pusher = new Pusher(env('PUSHER_APP_ID'), env('PUSHER_APP_SECRET'), env('PUSHER_APP_ID'));
+        $pusher = new Pusher(env('PUSHER_APP_KEY'), env('PUSHER_APP_SECRET'), env('PUSHER_APP_ID'));
         $auth = $pusher->socketAuth($request->input('channel_name'), $request->input('socket_id'));
         return $auth;
     }
