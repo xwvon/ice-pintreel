@@ -145,7 +145,7 @@ class CreateMediaInfosTable extends Migration
             $table->bigInteger("user_id")->index()->comment('用户ID');
             $table->string('input_url');
             $table->string('media_type')->nullable();
-            $table->string('media_id')->unique();
+            $table->string('media_id')->nullable();
             $table->string('reference_id', 64)->nullable();
             $table->string('client_token', 32)->nullable();
             $table->string('business_type')->nullable();

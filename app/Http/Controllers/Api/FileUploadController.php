@@ -38,7 +38,7 @@ class FileUploadController extends Controller
 
         // Generate unique file name
         // $filename = uniqid() . '.' . $file->getClientOriginalExtension();
-        $filename = auth()->user()->username . '/' . $file->getClientOriginalName();
+        $filename = auth()->user()->id . '/' . $file->getClientOriginalName();
 
         $disk = $request->disk;
 
