@@ -46,6 +46,10 @@ This project is designed to handle media uploads, processing, and management wit
 ![alt text](image.png)
 
 3.配置`.env`文件
+```bash
+cp .env.example .env
+```
+
 ```env
 # Aliyun Configuration
 ALIYUN_VIDEO_ACCESS_KEY_ID=your_access_key_id
