@@ -52,6 +52,7 @@ class FileUploadController extends Controller
         $bucket          = $request->bucket ?? $config["oss"]["default"]["bucket"];
         try {
             $ossClient = new OssClient($accessKeyId, $accessKeySecret, $endpoint);
+            $ossClient->settimeout(30);
             $data = $ossClient->uploadFile($bucket, $filename, $file->getRealPath());
             if ($data) {
                 $userfile = UserFile::create([

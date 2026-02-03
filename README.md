@@ -40,7 +40,7 @@ This project is designed to handle media uploads, processing, and management wit
 ## Docker Deployment
 
 ### 阿里云只能媒体服务订阅
-1. 打开https://ice.console.aliyun.com/
+1. 打开https://ice.console.aliyun.com/, 开通服务
 
 2.配置存储
 ![alt text](image.png)
@@ -57,10 +57,22 @@ ALIYUN_ROLE_ARN=acs:ram::your_account_id:role/your_role_name
 ALIYUN_ROLE_SESSION_NAME=your_session_name
 
 # Database
-DB_DSN=mongodb://root:password@127.0.0.1:27017
+DB_DATABASE=ice
+DB_USERNAME=root
+DB_PASSWORD=root
+DB_CONNECTION=mongodb
+DB_DSN=mongodb://root:root@127.0.0.1:27017
 
 # Redis
+REDIS_HOST=redis
+REDIS_PORT=6379
 REDIS_PASSWORD=your_redis_password
+
+# jwt secret random string
+JWT_SECRET=1qyZNoqwVsvnwwkzBLVbuouxxTF533Ekkl0wmzbrUBev9MO3fa7lNniP1V8F40mW
+
+# PENGTOUR_API_URL
+PENGTOUR_API_URL=https://addition-service.test.pintreel.com
 ```
 
 ### puhser配置
@@ -79,31 +91,7 @@ PUSHER_APP_SECRET=
 PUSHER_APP_CLUSTER=
 ```
 
-### Quick Start with Docker Compose
-
-1. Ensure `.env` is configured with Docker-compatible values:
-```env
-# Use Docker service names, not localhost
-REDIS_HOST=redis
-REDIS_PORT=6379
-DB_DSN=mongodb://root:password@mongodb:27017
-```
-2. Build the Docker image manually:
-```bash
-docker build -t my-app:latest .
-```
-
-3. Build and start containers:
-```bash
-docker-compose -f compose.prod.yml up -d
-```
-
-4. Run migrations:
-```bash
-docker-compose exec app php artisan migrate
-```
-
-### Or deploy with script
+### deploy with script
 ```bash
 chmod +x deploy.sh
 ./deploy.sh
