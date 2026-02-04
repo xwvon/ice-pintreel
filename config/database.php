@@ -116,7 +116,7 @@ return [
 
         'mongodb' => [
             'driver' => 'mongodb',
-            'dsn' => 'mongodb://root:root@mongodb:27017',
+            'dsn' => env('DB_DSN', 'mongodb://root:123456@mongodb:27017'),
             'database' => env('DB_DATABASE', 'homestead'),
         ],
     ],
