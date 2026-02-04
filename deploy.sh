@@ -9,7 +9,7 @@ echo "▶ Building Docker image: ${IMAGE_NAME}"
 docker build -t "${IMAGE_NAME}" .
 
 echo "▶ Starting containers using ${COMPOSE_FILE}"
-docker-compose -f "${COMPOSE_FILE}" up -d
+docker-compose -f "${COMPOSE_FILE}" up -d --build
 
 echo "▶ Waiting for app container to be ready..."
 sleep 5
